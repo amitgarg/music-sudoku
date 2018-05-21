@@ -1,0 +1,44 @@
+.Cell{
+  float:left;
+  border: 1px solid white;
+  box-sizing: border-box;
+  background: #cce8ff;
+  font-family: system-ui;
+}
+.Cell select{
+  height: 100%;
+  width: 100%;
+  padding-left: .3em;
+  font-size: 2.3em;
+  appearance: none;
+}
+.Cell select.icons{
+  padding-top: .06em;
+  padding-left: .1em;
+}
+.Cell select.music{
+  padding-top: 12%;
+  height:100%;
+}
+.Cell button{
+  font-size:.1em;
+  padding: 0;
+  position:absolute;
+  top:0px;
+  left:2px;
+}
+.Cell button.expose{
+  left:20px;
+}
+.Cell .disabled{
+  font-weight: bold;
+  font-size: 2.4em;
+  background-color: #e5e5e5;
+  height: 100%;
+}
+.Cell .disabled.music{
+  padding-top: 15%;
+  height: 85%;
+  font-weight: normal;
+  font-size:2.3em;
+}
