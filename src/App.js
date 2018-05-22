@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Grid from './components/Grid';
 import {range} from './utils';
+import {notes} from 'tonal-scale';
 
 class App extends Component {
   render() {
@@ -16,18 +17,26 @@ class App extends Component {
       [2, , , , 1, , 6, , 8],
       [, , , 6, 9, 2, , 1, 4]
     ];
+    var scaleIndex = 3;
+    var gridSize = 9;
+    var length = 0;
+    var notesArray = notes(`C${scaleIndex++} major`);
+    while(notesArray.length < gridSize){
+      notesArray = notesArray.concat(notes(`D${scaleIndex++} pentatonic`))
+    }
+    notesArray = notesArray.slice(0,gridSize);
     const cellInfo = [
       {
-        type: 'numbers'
+        type: 'numbers',
+        dataArray: range(1,10)
       },
       {
         type: 'icons',
-        iconsArray: range(9833,9843).map(val=>`&#${val};`)
+        dataArray: range(9833,9843).map(val=>`&#${val};`)
       },
       {
         type: 'music',
-        notesArray:[130.8, 146.8, 164.8, 174.6, 196.0, 220.0, 246.9, 261.6, 0],
-        notationsArray:['C', 'D', 'E', 'F', 'G', 'A', 'B', "C'", 'X'],
+        dataArray:notesArray,
         exposeFixed : false,
         exposeSelected : true
       }

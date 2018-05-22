@@ -1,34 +1,32 @@
 import React from 'react';
 import '../css/Cell.css';
 import FixedCell from './FixedCell';
+import { range } from '../utils';
+import { freq } from 'tonal-note';
 
 const Cell = props => {
-  console.log('Rendering Cell');
   const { cellSize, data, cellInfo } = props;
   var cellSizePx = cellSize + 'px';
+  const cellType = cellInfo.type;
+
   function handleChange(e) {
     props.onChange(e.currentTarget.value);
   }
 
   function handleNoteClick() {
     if (data.value > 0) {
-      props.handleNote(cellInfo.notesArray[data.value - 1]);
+      props.handleNote(freq(cellInfo.dataArray[data.value - 1]));
     } else {
       props.handleNote(0);
     }
   }
+
   function stopSound() {
     props.handleNote(0);
   }
-  const cellType = cellInfo.type;
+
   function getDisplayValue(value) {
-    if (cellType === 'icons') {
-      return props.cellInfo.iconsArray[value];
-    } else if (cellType == 'music') {
-      return props.cellInfo.notationsArray[value];
-    } else {
-      return value + 1;
-    }
+    return props.cellInfo.dataArray[value];
   }
 
   return (
@@ -45,7 +43,7 @@ const Cell = props => {
 
       {data.fixed ? (
         <FixedCell
-          value={getDisplayValue(data.value-1)}
+          value={getDisplayValue(data.value - 1)}
           cellType={cellType}
           exposeFixed={props.cellInfo.exposeFixed}
         />
@@ -57,7 +55,7 @@ const Cell = props => {
           className={cellType}
         >
           <option value="0"> </option>
-          {[0, 1, 2, 3, 4, 5, 6, 7, 8].map(
+          {range(0, props.cellInfo.dataArray.length).map(
             val =>
               cellType == 'numbers' ? (
                 <option key={val} value={val + 1}>

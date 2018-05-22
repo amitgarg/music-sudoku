@@ -3,6 +3,7 @@ import '../css/Grid.css';
 import Block from './Block';
 import { range, initializeMusic, updateNote, stopMusic } from '../utils';
 
+
 export default class Grid extends React.Component {
   constructor(props) {
     super(props);
@@ -121,7 +122,7 @@ export default class Grid extends React.Component {
   }
 
   render() {
-    const { size, cellSize, cellInfo } = this.props;
+    const { size, cellSize } = this.props;
     const blockSize = size * cellSize + 5;
     let gridSize = size * blockSize + 'px';
     return (
