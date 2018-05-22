@@ -3,7 +3,6 @@ import '../css/Grid.css';
 import Block from './Block';
 import { range, initializeMusic, updateNote, stopMusic } from '../utils';
 
-
 export default class Grid extends React.Component {
   constructor(props) {
     super(props);
@@ -15,8 +14,8 @@ export default class Grid extends React.Component {
       for (var j = 0; j < gridSize; j++) {
         blockState.values[j] =
           inputData[i] && inputData[i][j]
-            ? { value: inputData[i][j], fixed: true }
-            : { value: 0, fixed: false };
+            ? { value: inputData[i][j] - 1, fixed: true }
+            : { value: -1, fixed: false };
       }
       gridState[i] = blockState;
     }
@@ -63,19 +62,19 @@ export default class Grid extends React.Component {
     return values
       .map(value => value.value)
       .sort()
-      .every((val, index) => val == index + 1);
+      .every((val, index) => val == index);
   }
   validateGrid() {
-    var size = this.props.size * this.props.size;
+    var gridSize = this.props.size * this.props.size;
     if (
       this.state.gridState.every(blockState => this.validateValues(blockState.values))
     ) {
       if (
-        range(0, size)
+        range(0, gridSize)
           .map(this.rowValues)
           .every(this.validateValues)
       ) {
-        return range(0, size)
+        return range(0, gridSize)
           .map(this.columnValues)
           .every(this.validateValues);
       }

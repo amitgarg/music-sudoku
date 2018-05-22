@@ -14,8 +14,8 @@ const Cell = props => {
   }
 
   function handleNoteClick() {
-    if (data.value > 0) {
-      props.handleNote(freq(cellInfo.dataArray[data.value - 1]));
+    if (data.value > -1) {
+      props.handleNote(freq(cellInfo.dataArray[data.value]));
     } else {
       props.handleNote(0);
     }
@@ -35,7 +35,7 @@ const Cell = props => {
       style={{ width: cellSizePx, height: cellSizePx, position: 'relative' }}
     >
       {cellType === 'music' &&
-        data.value > 0 && (
+        data.value > -1 && (
           <button className="btn" onMouseDown={handleNoteClick} onMouseUp={stopSound}>
             play
           </button>
@@ -43,7 +43,7 @@ const Cell = props => {
 
       {data.fixed ? (
         <FixedCell
-          value={getDisplayValue(data.value - 1)}
+          value={getDisplayValue(data.value)}
           cellType={cellType}
           exposeFixed={props.cellInfo.exposeFixed}
         />
@@ -54,21 +54,21 @@ const Cell = props => {
           onChange={handleChange}
           className={cellType}
         >
-          <option value="0"> </option>
+          <option value="-1"> </option>
           {range(0, props.cellInfo.dataArray.length).map(
             val =>
               cellType == 'numbers' ? (
-                <option key={val} value={val + 1}>
+                <option key={val} value={val}>
                   {getDisplayValue(val)}
                 </option>
               ) : cellType == 'icons' ? (
                 <option
                   key={val}
-                  value={val + 1}
+                  value={val}
                   dangerouslySetInnerHTML={{ __html: getDisplayValue(val) }}
                 />
               ) : (
-                <option key={val} value={val + 1}>
+                <option key={val} value={val}>
                   {props.cellInfo.exposeSelected ? getDisplayValue(val) : 'X'}
                 </option>
               )
