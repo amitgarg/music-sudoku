@@ -1,44 +1,46 @@
-.Cell{
-  float:left;
+.Cell {
+  float: left;
   border: 1px solid white;
   box-sizing: border-box;
   background: #cce8ff;
   font-family: system-ui;
 }
-.Cell select{
+.Cell select {
   height: 100%;
   width: 100%;
-  padding-left: .3em;
+  padding-left: 0.3em;
   font-size: 2.3em;
   appearance: none;
 }
-.Cell select.icons{
-  padding-top: .06em;
-  padding-left: .1em;
+.Cell select.icons {
+  padding-top: 0.06em;
+  padding-left: 0.1em;
 }
-.Cell select.music{
+.Cell select.music {
   padding-top: 12%;
-  height:100%;
+  height: 100%;
+  font-size: 1.5em;
+  padding-left: 0px;
 }
-.Cell button{
-  font-size:.1em;
+.Cell button {
+  font-size: 0.1em;
   padding: 0;
-  position:absolute;
-  top:0px;
-  left:2px;
+  position: absolute;
+  top: 0px;
+  left: 2px;
 }
-.Cell button.expose{
-  left:20px;
+.Cell button.expose {
+  left: 20px;
 }
-.Cell .disabled{
+.Cell .disabled {
   font-weight: bold;
   font-size: 2.4em;
   background-color: #e5e5e5;
   height: 100%;
 }
-.Cell .disabled.music{
-  padding-top: 15%;
-  height: 85%;
+.Cell .disabled.music {
+  padding-top: 25%;
+  height: 75%;
   font-weight: normal;
-  font-size:2.3em;
+  font-size: 1.5em;
 }

@@ -1,15 +1,35 @@
 import React, { Component } from 'react';
 import './App.css';
 import Grid from './components/Grid';
+import ControlBox from './components/ControlBox';
 import { range } from './utils';
 import { notes } from 'tonal-scale';
+import { simplify } from 'tonal-note';
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {size: 3, gridType: 'numbers'};
+    this.state = {
+      size: 3,
+      cellType: 'music',
+      feedback: true,
+      musicKey: 'C',
+      octave: 2,
+      scale: 'major'
+    };
+    this.handleControlChange = this.handleControlChange.bind(this);
+  }
+
+  handleControlChange(data) {
+    let newState = {};
+    for (var key in this.state) {
+      newState[key] = data.hasOwnProperty(key) ? data[key] : this.state[key];
+    }
+    this.setState(newState);
   }
   render() {
+    const { size, cellType, feedback, musicKey, octave, scale } = this.state;
+
     const inputData = [
       [4, 5, , 8, 6, 3, , ,],
       [7, , 9, , 5, , , , 3],
@@ -22,28 +42,26 @@ class App extends Component {
       [, , , 6, 9, 2, , 1, 4]
     ];
 
-    const cellInfo = function(type, size) {
+    const cellInfo = function() {
       let gridSize = size * size;
-      if (type === 'numbers') {
+      if (cellType === 'numbers') {
         return {
           type: 'numbers',
           dataArray: range(1, gridSize + 1)
         };
-      } else if (type === 'icons') {
+      } else if (cellType === 'icons') {
         var startIndex = 9833;
         return {
           type: 'icons',
           dataArray: range(startIndex, startIndex + gridSize + 1).map(val => `&#${val};`)
         };
       } else {
-        let scaleIndex = 2;
-        let key = 'C';
-        let scale = 'pentatonic';
         let notesArray = [];
+        let octaveVar = octave;
         while (notesArray.length < gridSize) {
-          notesArray = notesArray.concat(notes(`${key}${scaleIndex++} ${scale}`));
+          notesArray = notesArray.concat(notes(`${musicKey}${octaveVar++} ${scale}`));
         }
-        notesArray = notesArray.slice(0, gridSize);
+        notesArray = notesArray.slice(0, gridSize).map(simplify);
         return {
           type: 'music',
           dataArray: notesArray,
@@ -55,12 +73,21 @@ class App extends Component {
 
     return (
       <div className="App">
+        <ControlBox
+          size={size}
+          cellType={cellType}
+          feedback={feedback}
+          musicKey={musicKey}
+          scale={scale}
+          octave={octave}
+          handleControlChange={this.handleControlChange}
+        />
         <Grid
-          size={3}
+          size={size}
           cellSize={50}
           inputData={inputData}
-          cellInfo={cellInfo('music',3)}
-          feedback={true}
+          cellInfo={cellInfo()}
+          feedback={feedback}
         />
       </div>
     );

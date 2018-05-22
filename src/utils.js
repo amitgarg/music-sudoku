@@ -30,5 +30,6 @@ export function updateNote(frequency){
 }
 
 export function stopMusic(){
+  oscillator.stop();
   context.close();
 }

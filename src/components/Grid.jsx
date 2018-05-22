@@ -6,6 +6,17 @@ import { range, initializeMusic, updateNote, stopMusic } from '../utils';
 export default class Grid extends React.Component {
   constructor(props) {
     super(props);
+
+    var gridState = this.setup(props);
+    this.state = { gridState };
+    this.handleChange = this.handleChange.bind(this);
+    this.rowValues = this.rowValues.bind(this);
+    this.columnValues = this.columnValues.bind(this);
+
+    props.cellInfo.type === 'music' && initializeMusic();
+  }
+
+  setup(props) {
     const gridSize = props.size * props.size;
     var gridState = [];
     var inputData = props.inputData;
@@ -20,12 +31,20 @@ export default class Grid extends React.Component {
       gridState[i] = blockState;
     }
 
-    this.state = { gridState };
-    this.handleChange = this.handleChange.bind(this);
-    this.rowValues = this.rowValues.bind(this);
-    this.columnValues = this.columnValues.bind(this);
+    return gridState;
+  }
 
-    props.cellInfo.type === 'music' && initializeMusic();
+  componentWillReceiveProps(newProps) {
+    if (newProps.size !== this.props.size) {
+      this.setState({ gridState: this.setup(newProps) });
+    }
+    if (newProps.cellInfo.type !== this.props.cellInfo.type) {
+      if (newProps.cellInfo.type === 'music') {
+        initializeMusic();
+      } else if (this.props.cellInfo.type === 'music') {
+        stopMusic();
+      }
+    }
   }
 
   rowValues(index) {
@@ -117,7 +136,7 @@ export default class Grid extends React.Component {
   }
 
   componentWillUnmount() {
-    stopMusic();
+    this.props.cellInfo.type === 'music' && stopMusic();
   }
 
   render() {
