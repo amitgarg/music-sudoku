@@ -10,6 +10,12 @@ export default class FixedCell extends React.Component {
     this.toggleExpose = this.toggleExpose.bind(this);
   }
 
+  componentWillReceiveProps(newProps) {
+    if (newProps.cellType !== this.props.cellType) {
+      this.setState({ exposed: newProps.cellType !== 'music' || newProps.exposeFixed });
+    }
+  }
+
   toggleExpose() {
     this.setState({ exposed: !this.state.exposed });
   }

@@ -72,12 +72,14 @@ class App extends Component {
       }
     };
 
+    let feedbackBoolean = feedback == 'true';
+
     return (
       <div className="App">
         <ControlBox
           size={size}
           cellType={cellType}
-          feedback={feedback}
+          feedback={feedbackBoolean}
           musicKey={musicKey}
           scale={scale}
           octave={octave}
@@ -89,7 +91,7 @@ class App extends Component {
           cellSize={50}
           inputData={inputData}
           cellInfo={cellInfo()}
-          feedback={feedback}
+          feedback={feedbackBoolean}
         />
       </div>
     );
