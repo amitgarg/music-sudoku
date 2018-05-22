@@ -1,34 +1,31 @@
 import React from 'react';
 import Cell from './Cell';
 import '../css/Pallette.css';
+import { updateNote } from '../utils';
 
 const Pallette = props => {
-  const { cellSize, cellInfo, handleNote } = props;
+  const { cellSize, cellInfo } = props;
   function renderCell(data, index) {
     var newCellInfo = {
       type: 'music',
-        notesArray:cellInfo.notesArray,
-        notationsArray:cellInfo.notationsArray,
-        exposeFixed : true,
-        exposeSelected : true
-    }
+      dataArray: cellInfo.dataArray,
+      exposeFixed: true,
+      exposeSelected: true
+    };
     return (
       <Cell
         key={index}
-        data={{value: index+1, fixed: true}}
+        data={{ value: index, fixed: true }}
         cellSize={cellSize}
         cellInfo={newCellInfo}
-        handleNote={handleNote}
+        handleNote={updateNote}
       />
     );
   }
 
-  return (
-    <div
-      className='Pallette'
-      style={{ width: cellSize, float: 'left' }}
-    >
-      {props.cellInfo.notationsArray.map(renderCell)}
+  return cellInfo.type == 'music' && (
+    <div className="Pallette" style={{  float: 'left' }}>
+      {props.cellInfo.dataArray.map(renderCell)}
     </div>
   );
 };

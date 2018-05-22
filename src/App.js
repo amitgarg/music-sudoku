@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Grid from './components/Grid';
 import ControlBox from './components/ControlBox';
+import Pallette from './components/Pallette';
 import { range } from './utils';
 import { notes } from 'tonal-scale';
 import { simplify } from 'tonal-note';
@@ -14,7 +15,7 @@ class App extends Component {
       cellType: 'music',
       feedback: true,
       musicKey: 'C',
-      octave: 2,
+      octave: 3,
       scale: 'major'
     };
     this.handleControlChange = this.handleControlChange.bind(this);
@@ -65,7 +66,7 @@ class App extends Component {
         return {
           type: 'music',
           dataArray: notesArray,
-          exposeFixed: true,
+          exposeFixed: false,
           exposeSelected: true
         };
       }
@@ -82,6 +83,7 @@ class App extends Component {
           octave={octave}
           handleControlChange={this.handleControlChange}
         />
+        <Pallette cellSize={50} cellInfo={cellInfo()} />
         <Grid
           size={size}
           cellSize={50}

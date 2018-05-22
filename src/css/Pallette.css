@@ -1,6 +1,5 @@
 .Pallette{
-  float: left;
-  position: relative;
-  left: 20px;
-  top: 5px;
+  border: 3px outset #87b1ed;
+  border-width: 3px 8px;
+  margin-bottom: 5px;
 }

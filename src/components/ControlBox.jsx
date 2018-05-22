@@ -19,45 +19,63 @@ export default class ControlBox extends React.Component {
     const { size, cellType, feedback, musicKey, scale, octave } = this.props;
     return (
       <div className="ControlBox">
-        <SelectBox
-          label="Size"
-          value={size}
-          onChangeHandler={this.handleControlChanges('size')}
-          options={[2, 3, 4]}
-        />
-        <SelectBox
-          label="Cell Type"
-          value={cellType}
-          onChangeHandler={this.handleControlChanges('cellType')}
-          options={['numbers', 'icons', 'music']}
-        />
+        <div className="halfWidth">
+          <SelectBox
+            label="Cell Type"
+            value={cellType}
+            onChangeHandler={this.handleControlChanges('cellType')}
+            options={['numbers', 'icons', 'music']}
+          />
+          <SelectBox
+            label="Size"
+            value={size}
+            onChangeHandler={this.handleControlChanges('size')}
+            options={[2, 3, 4]}
+          />
+        </div>
         <SelectBox
           label="Feedback Enabled"
           value={feedback}
           onChangeHandler={this.handleControlChanges('feedback')}
           options={[{ label: 'Yes', value: true }, { label: 'No', value: false }]}
         />
-        {cellType === 'music' && 
-        <div>
-        <SelectBox
-          label="Music Key"
-          value={musicKey}
-          onChangeHandler={this.handleControlChanges('musicKey')}
-          options={['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']}
-        />
-        <SelectBox
-          label="Scale"
-          value={scale}
-          onChangeHandler={this.handleControlChanges('scale')}
-          options={names()}
-        />
-        <SelectBox
-          label="Octave"
-          value={octave}
-          onChangeHandler={this.handleControlChanges('octave')}
-          options={[0, 1, 2, 3, 4, 5, 6, 7, 8]}
-        />
-        </div>}
+        {cellType === 'music' && (
+          <div>
+            <div className="halfWidth">
+              <SelectBox
+                label="Music Key"
+                value={musicKey}
+                onChangeHandler={this.handleControlChanges('musicKey')}
+                options={[
+                  'C',
+                  'C#',
+                  'D',
+                  'D#',
+                  'E',
+                  'F',
+                  'F#',
+                  'G',
+                  'G#',
+                  'A',
+                  'A#',
+                  'B'
+                ]}
+              />
+              <SelectBox
+                label="Octave"
+                value={octave}
+                onChangeHandler={this.handleControlChanges('octave')}
+                options={[0, 1, 2, 3, 4, 5, 6, 7, 8]}
+              />
+            </div>
+            <SelectBox
+              label="Scale"
+              value={scale}
+              onChangeHandler={this.handleControlChanges('scale')}
+              options={names()}
+            />
+          </div>
+        )}
       </div>
     );
   }

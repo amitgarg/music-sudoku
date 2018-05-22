@@ -1,14 +1,23 @@
 .ControlBox{
-  padding-bottom: 20px;
+  padding-bottom: 5px;
+  width: 510px;
 }
 .filter{
   width: 100%;
-  height: 20px;
-  padding: 5px 0px;
+  height: 15px;
+  padding: 3px 0px;
+}
+.halfWidth{
+  padding-top:2px;
+  overflow: hidden;
+}
+.halfWidth .filter{
+  width:50%;
+  float:left;
 }
 .filter span{
   float: left;
-  width: 150px;
+  width: 140px;
   text-align: right;
 
 }
