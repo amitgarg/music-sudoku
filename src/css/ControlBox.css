@@ -23,5 +23,9 @@
 }
 .filter select{
   float:left;
-  margin-left:30px;
+  margin-left:5px;
+  width:175px;
+}
+.halfWidth .filter select{ 
+  width:100px;
 }
