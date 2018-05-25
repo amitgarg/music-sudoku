@@ -1,82 +1,73 @@
 import React from 'react';
 import '../css/Cell.css';
 import FixedCell from './FixedCell';
+
 import { range } from '../utils';
 import { freq } from 'tonal-note';
+import ColorCell from './ColorCell';
+import IconCell from './IconCell';
+import NumberCell from './NumberCell';
+import MusicCell from './MusicCell';
 
-const Cell = props => {
-  const { cellSize, data, cellInfo } = props;
-  var cellSizePx = cellSize + 'px';
-  const cellType = cellInfo.type;
+class Cell extends React.Component {
+  constructor(props) {
+    super(props);
 
-  function handleChange(e) {
-    props.onChange(e.currentTarget.value);
+    this.startEffects = this.startEffects.bind(this);
+    this.stopEffects = this.stopEffects.bind(this);
   }
 
-  function handleNoteClick() {
+  startEffects() {
+    const { data, cellInfo } = this.props;
     if (data.value > -1) {
-      props.handleNote(freq(cellInfo.dataArray[data.value]));
+      this.props.handleNote(freq(cellInfo.dataArray[data.value]));
     } else {
-      props.handleNote(0);
+      this.props.handleNote(0);
     }
   }
 
-  function stopSound() {
-    props.handleNote(0);
+  stopEffects() {
+    this.props.handleNote(0);
   }
 
-  function getDisplayValue(value) {
-    return props.cellInfo.dataArray[value];
-  }
-
-  return (
-    <div
-      className="Cell"
-      style={{ width: cellSizePx, height: cellSizePx, position: 'relative' }}
-    >
-      {cellType === 'music' &&
-        data.value > -1 && (
-          <button className="btn" onMouseDown={handleNoteClick} onMouseUp={stopSound}>
-            play
-          </button>
+  render() {
+    const { cellSize, data, cellInfo, onCellClick, onChange } = this.props;
+    var cellSizePx = cellSize + 'px';
+    const cellType = cellInfo.type;
+    return (
+      <div
+        className="Cell"
+        style={{ width: cellSizePx, height: cellSizePx, position: 'relative' }}
+      >
+        {cellInfo.type == 'colors' ? (
+          <ColorCell cellInfo={cellInfo} data={data} handleCellClick={onCellClick} />
+        ) : cellInfo.type == 'icons' ? (
+          <IconCell
+            cellSize={cellSize}
+            cellInfo={cellInfo}
+            data={data}
+            onChange={onChange}
+          />
+        ) : cellInfo.type == 'numbers' ? (
+          <NumberCell
+            cellSize={cellSize}
+            cellInfo={cellInfo}
+            data={data}
+            onChange={onChange}
+          />
+        ) : (
+          <MusicCell
+            cellSize={cellSize}
+            cellInfo={cellInfo}
+            data={data}
+            onChange={onChange}
+            startEffects={this.startEffects}
+            stopEffects={this.stopEffects}
+          />
         )}
-
-      {data.fixed ? (
-        <FixedCell
-          value={getDisplayValue(data.value)}
-          cellType={cellType}
-          exposeFixed={props.cellInfo.exposeFixed}
-        />
-      ) : (
-        <select
-          name={props.name}
-          value={data.value}
-          onChange={handleChange}
-          className={cellType}
-        >
-          <option value="-1"> </option>
-          {range(0, props.cellInfo.dataArray.length).map(
-            val =>
-              cellType == 'numbers' ? (
-                <option key={val} value={val}>
-                  {getDisplayValue(val)}
-                </option>
-              ) : cellType == 'icons' ? (
-                <option
-                  key={val}
-                  value={val}
-                  dangerouslySetInnerHTML={{ __html: getDisplayValue(val) }}
-                />
-              ) : (
-                <option key={val} value={val}>
-                  {props.cellInfo.exposeSelected ? getDisplayValue(val) : 'X'}
-                </option>
-              )
-          )}
-        </select>
-      )}
-    </div>
-  );
-};
+      </div>
+    );
+  }
+}
 
 export default Cell;

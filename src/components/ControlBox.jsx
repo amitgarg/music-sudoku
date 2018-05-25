@@ -24,7 +24,7 @@ export default class ControlBox extends React.Component {
             label="Cell Type"
             value={cellType}
             onChangeHandler={this.handleControlChanges('cellType')}
-            options={['numbers', 'icons', 'music']}
+            options={['numbers', 'icons', 'colors', 'music']}
           />
           <SelectBox
             label="Size"

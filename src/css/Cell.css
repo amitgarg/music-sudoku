@@ -22,6 +22,7 @@
   font-size: 1.5em;
   padding-left: 0px;
 }
+
 .Cell button {
   font-size: 0.1em;
   padding: 0;
@@ -32,11 +33,12 @@
 .Cell button.expose {
   left: 20px;
 }
-.Cell .disabled {
+.Cell.disabled {
   font-weight: bold;
   font-size: 2.4em;
   background-color: #e5e5e5;
   height: 100%;
+  box-sizing: border-box;
 }
 .Cell .disabled.music {
   padding-top: 25%;
@@ -44,3 +46,9 @@
   font-weight: normal;
   font-size: 1.5em;
 }
+
+.colors{
+  height: 100%;
+  box-sizing: border-box;
+}
+

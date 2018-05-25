@@ -12,7 +12,7 @@ class App extends Component {
     super(props);
     this.state = {
       size: 3,
-      cellType: 'music',
+      cellType: 'colors',
       feedback: true,
       musicKey: 'C',
       octave: 3,
@@ -51,10 +51,19 @@ class App extends Component {
           dataArray: range(1, gridSize + 1)
         };
       } else if (cellType === 'icons') {
-        var startIndex = 9833;
+        // var startIndex = 9833;
+        let startIndex = 4096;
         return {
           type: 'icons',
           dataArray: range(startIndex, startIndex + gridSize + 1).map(val => `&#${val};`)
+        };
+      } else if (cellType === 'colors') {
+        // var startIndex = 9833;
+        let startIndex = 0;
+        return {
+          type: 'colors',
+          dataArray: ['#000099','#0000BB','#0000FF','#009900','#00BB00','#00FF00','#990000','#BB0000','#FF0000']
+          // dataArray: range(startIndex, startIndex + gridSize + 1).map(val => `&#${val};`)
         };
       } else {
         let notesArray = [];
@@ -75,7 +84,7 @@ class App extends Component {
     let feedbackBoolean = feedback == 'true';
 
     return (
-      <div className="App">
+      <div className="App" style={{width: (size*size+1)*50+'px'}}>
         <ControlBox
           size={size}
           cellType={cellType}
