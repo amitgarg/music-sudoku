@@ -94,6 +94,7 @@ class App extends Component {
     let feedbackBoolean = feedback == 'true';
 
     let cellSize = (window.outerWidth -40 -5*size)/(size*size);
+    cellSize = cellSize > 50 ? 50 : cellSize;
 
     return (
       <div className="App" >
