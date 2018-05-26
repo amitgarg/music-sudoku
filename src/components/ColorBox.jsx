@@ -6,7 +6,8 @@ export default class ColorBox extends React.Component {
   }
 
   render() {
-    const { colors, onColorSelect, value } = this.props;
+    const { colors, onColorSelect, value, cellSize, size } = this.props;
+    let blockSize = cellSize * size + 5 + 'px';
     function onSelect(index) {
       return function(e) {
         onColorSelect(index);
@@ -14,21 +15,22 @@ export default class ColorBox extends React.Component {
     }
     return (
       <div className="ColorBox">
-        <div className="BoxContainer">
-          <div className="defaultRow">
-            <div className={`colorCell default ${value == -1 && 'highlighted'}`} onClick={onSelect(-1)} />
-            <button onClick={this.props.onNoChange}>Leave it</button>
-          </div>
-          <div className="ColorGrid">
-            {colors.map((color, index) => (
-              <div
-                key={index}
-                className={`colorCell ${value == index && 'highlighted'}`}
-                onClick={onSelect(index)}
-                style={{ backgroundColor: color }}
-              />
-            ))}
-          </div>
+        <div className="defaultRow" style={{ height: cellSize + 'px' }}>
+          <div
+            className={`colorCell default ${value == -1 && 'highlighted'}`}
+            onClick={onSelect(-1)}
+          />
+          <button onClick={this.props.onNoChange}>Leave it</button>
+        </div>
+        <div className="ColorGrid" style={{ width: blockSize, height: blockSize }}>
+          {colors.map((color, index) => (
+            <div
+              key={index}
+              className={`colorCell ${value == index && 'highlighted'}`}
+              onClick={onSelect(index)}
+              style={{ backgroundColor: color }}
+            />
+          ))}
         </div>
       </div>
     );

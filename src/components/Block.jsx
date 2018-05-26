@@ -53,6 +53,7 @@ class Block extends React.Component {
 
   render() {
     const {
+      size,
       cellSize,
       blockSize,
       handleNote,
@@ -70,10 +71,12 @@ class Block extends React.Component {
       >
         {this.state.colorBoxIsOpen && (
           <ColorBox
+            size={size}
             value={this.state.colorCellValue}
             colors={cellInfo.dataArray}
             onColorSelect={this.handleColorSelect}
             onNoChange={this.toggleColorBox}
+            cellSize={cellSize}
           />
         )}
         {this.props.values.map(this.renderCell)}

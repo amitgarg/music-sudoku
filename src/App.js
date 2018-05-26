@@ -62,7 +62,17 @@ class App extends Component {
         let startIndex = 0;
         return {
           type: 'colors',
-          dataArray: ['#000099','#0000BB','#0000FF','#009900','#00BB00','#00FF00','#990000','#BB0000','#FF0000']
+          dataArray: [
+            '#000099',
+            '#0000BB',
+            '#0000FF',
+            '#009900',
+            '#00BB00',
+            '#00FF00',
+            '#990000',
+            '#BB0000',
+            '#FF0000'
+          ]
           // dataArray: range(startIndex, startIndex + gridSize + 1).map(val => `&#${val};`)
         };
       } else {
@@ -83,8 +93,10 @@ class App extends Component {
 
     let feedbackBoolean = feedback == 'true';
 
+    let cellSize = (window.outerWidth -40 -5*size)/(size*size);
+
     return (
-      <div className="App" style={{width: (size*size+1)*50+'px'}}>
+      <div className="App" >
         <ControlBox
           size={size}
           cellType={cellType}
@@ -94,10 +106,10 @@ class App extends Component {
           octave={octave}
           handleControlChange={this.handleControlChange}
         />
-        <Pallette cellSize={50} cellInfo={cellInfo()} />
+        <Pallette cellSize={cellSize} cellInfo={cellInfo()} />
         <Grid
           size={size}
-          cellSize={50}
+          cellSize={cellSize}
           inputData={inputData}
           cellInfo={cellInfo()}
           feedback={feedbackBoolean}

@@ -1,31 +1,31 @@
-.ControlBox{
+.ControlBox {
   padding-bottom: 5px;
-  width: 510px;
+  width: 100%;
 }
-.filter{
+.filter {
   width: 100%;
   height: 15px;
   padding: 3px 0px;
 }
-.halfWidth{
-  padding-top:2px;
+.halfWidth {
+  padding-top: 2px;
   overflow: hidden;
 }
-.halfWidth .filter{
-  width:50%;
-  float:left;
-}
-.filter span{
+.halfWidth .filter {
+  width: 50%;
   float: left;
-  width: 140px;
+}
+.filter span {
+  float: left;
+  width: 40%;
+  max-width: 140px;
   text-align: right;
-
 }
-.filter select{
-  float:left;
-  margin-left:5px;
-  width:175px;
+.filter select {
+  float: left;
+  margin-left: 5%;
+  width: 50%;
 }
-.halfWidth .filter select{ 
-  width:100px;
+.halfWidth .filter select {
+  width: 100px;
 }

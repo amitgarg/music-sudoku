@@ -1,6 +1,5 @@
 import React from 'react';
 import '../css/Cell.css';
-import FixedCell from './FixedCell';
 
 import { range } from '../utils';
 import { freq } from 'tonal-note';
