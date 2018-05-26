@@ -35,10 +35,7 @@ class Cell extends React.Component {
     var cellSizePx = cellSize + 'px';
     const cellType = cellInfo.type;
     return (
-      <div
-        className="Cell"
-        style={{ width: cellSizePx, height: cellSizePx, position: 'relative' }}
-      >
+      <div className="Cell" style={{ width: cellSizePx, height: cellSizePx }}>
         {cellInfo.type == 'colors' ? (
           <ColorCell cellInfo={cellInfo} data={data} handleCellClick={onCellClick} />
         ) : cellInfo.type == 'icons' ? (
