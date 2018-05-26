@@ -5,7 +5,7 @@ class MusicCell extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      exposed: props.exposeFixed
+      exposed: props.cellInfo.exposeFixed
     };
 
     this.handleChange = this.handleChange.bind(this);
