@@ -23,7 +23,8 @@ class MusicCell extends React.Component {
     return (
       <div style={{ height: '100%' }}>
         {data.value > -1 && (
-          <button className="btn" onMouseDown={startEffects} onMouseUp={stopEffects}>
+          <button className="btn" onMouseDown={startEffects} onMouseUp={stopEffects} onTouchStart={startEffects}
+                onTouchEnd ={stopEffects}>
             play
           </button>
         )}
@@ -32,6 +33,8 @@ class MusicCell extends React.Component {
             {!cellInfo.exposeFixed && (
               <button
                 className="btn expose"
+                onTouchStart={this.toggleExpose}
+                onTouchEnd ={this.toggleExpose}
                 onMouseDown={this.toggleExpose}
                 onMouseUp={this.toggleExpose}
               >

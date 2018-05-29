@@ -131,7 +131,7 @@ class App extends Component {
     let cellSize = (window.innerWidth - 2 * padding - 5 * size) / (size * size);
     cellSize = cellSize > 50 ? 50 : cellSize;
     const blockSize = size * cellSize + 5;
-    const gridSize = size * blockSize + 'px';
+    const gridSize = size * blockSize;
     return (
       <div className="App" style={{ padding: `5px ${padding}px` }}>
         <ControlBox

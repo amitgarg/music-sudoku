@@ -7,10 +7,15 @@ const NumberCell = ({ cellSize, data, cellInfo, onChange }) => {
   }
 
   return data.fixed ? (
-    <div className={`${cellInfo.type} disabled`}>{cellInfo.dataArray[data.value]}</div>
+    <div
+      className={`${cellInfo.type} disabled`}
+      style={{ fontSize: 0.9 * cellSize + 'px' }}
+    >
+      {cellInfo.dataArray[data.value]}
+    </div>
   ) : (
     <select
-      style={{ fontSize: 0.5 * cellSize + 'px' }}
+      style={{ fontSize: 0.8 * cellSize + 'px', paddingRight: 0.2 * cellSize + 'px' }}
       value={data.value}
       onChange={handleChange}
       className={cellInfo.type}

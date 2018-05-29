@@ -10,13 +10,14 @@ const IconCell = ({ cellSize, data, cellInfo, onChange }) => {
     <div
       className={`${cellInfo.type} disabled`}
       dangerouslySetInnerHTML={{ __html: cellInfo.dataArray[data.value] }}
+      style={{ fontSize: 0.7 * cellSize + 'px' }}
     />
   ) : (
     <select
-      style={{ fontSize: 0.5 * cellSize + 'px' }}
       value={data.value}
       onChange={handleChange}
       className={cellInfo.type}
+      style={{ fontSize: 0.7 * cellSize + 'px', paddingRight: 0.1 * cellSize + 'px' }}
     >
       <option value="-1"> </option>
       {cellInfo.dataArray.map((val, index) => (

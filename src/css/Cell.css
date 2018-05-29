@@ -10,22 +10,22 @@
   height: 100%;
   width: 100%;
   padding-left: 0.3em;
-  font-size: 2.3em;
+  -webkit-appearance: none;
   appearance: none;
+  text-align-last: right;
+  direction: rtl;
 }
 .Cell select.icons {
-  padding-top: 0.06em;
-  padding-left: 0.1em;
+  padding-left: 0px;
 }
 .Cell select.music {
   padding-top: 12%;
   height: 100%;
-  font-size: 1.5em;
   padding-left: 0px;
 }
 
 .Cell button {
-  font-size: 0.1em;
+  font-size: 0.2em;
   padding: 0;
   position: absolute;
   top: 0px;
@@ -36,16 +36,16 @@
 }
 .Cell .disabled {
   font-weight: bold;
-  font-size: 2.4em;
   background-color: #e5e5e5;
   height: 100%;
   box-sizing: border-box;
 }
+.Cell .disabled.icons {
+  font-weight: normal;
+}
 .Cell .disabled.music {
   padding-top: 25%;
-  height: 75%;
   font-weight: normal;
-  font-size: 1.5em;
 }
 
 .colors {

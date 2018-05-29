@@ -13,8 +13,6 @@
   overflow: hidden;
 }
 .colorCell {
-  width: 33%;
-  height: 33%;
   float: left;
   box-sizing: border-box;
   border: 1px solid white;

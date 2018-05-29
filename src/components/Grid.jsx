@@ -144,7 +144,7 @@ export default class Grid extends React.Component {
   render() {
     const { size, cellSize, blockSize, gridSize, cellInfo } = this.props;
     return (
-      <div style={{ width: gridSize , margin: 'auto'}}>
+      <div style={{ width: gridSize+'px' , margin: 'auto'}}>
         <Pallette cellSize={cellSize} cellInfo={cellInfo} />
         <div className="Grid">
           {this.state.gridState.map((blockState, index) =>
