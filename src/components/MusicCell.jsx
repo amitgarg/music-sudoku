@@ -38,7 +38,7 @@ class MusicCell extends React.Component {
                 onMouseDown={this.toggleExpose}
                 onMouseUp={this.toggleExpose}
               >
-                expose
+                show
               </button>
             )}
             {this.state.exposed ? cellInfo.dataArray[data.value] : 'N'}
