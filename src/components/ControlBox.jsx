@@ -16,10 +16,10 @@ export default class ControlBox extends React.Component {
   }
 
   render() {
-    const { size, cellType, feedback, musicKey, scale, octave, gridSize } = this.props;
+    const { size, cellType, feedback, musicKey, scale, octave, gridSize, cellSize } = this.props;
     return (
       <div style={{ margin: 'auto' , width: gridSize}}>
-        <div className="ControlBox">
+        <div className="ControlBox" style={{fontSize: 0.4 * cellSize + 'px'}}>
           <div className="halfWidth">
             <SelectBox
               label="Cell Type"
@@ -35,7 +35,7 @@ export default class ControlBox extends React.Component {
             />
           </div>
           <SelectBox
-            label="Feedback Enabled"
+            label="Feedback"
             value={feedback}
             onChangeHandler={this.handleControlChanges('feedback')}
             options={[{ label: 'Yes', value: true }, { label: 'No', value: false }]}

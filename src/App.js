@@ -136,6 +136,7 @@ class App extends Component {
       <div className="App" style={{ padding: `5px ${padding}px` }}>
         <ControlBox
           size={size}
+          cellSize={cellSize}
           gridSize={gridSize}
           cellType={cellType}
           feedback={feedbackBoolean}
