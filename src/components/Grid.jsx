@@ -1,6 +1,8 @@
 import React from 'react';
 import '../css/Grid.css';
 import Block from './Block';
+
+import Pallette from './Pallette';
 import { range, initializeMusic, updateNote, stopMusic } from '../utils';
 
 export default class Grid extends React.Component {
@@ -140,20 +142,21 @@ export default class Grid extends React.Component {
   }
 
   render() {
-    const { size, cellSize } = this.props;
-    const blockSize = size * cellSize + 5;
-    let gridSize = size * blockSize + 'px';
+    const { size, cellSize, blockSize, gridSize, cellInfo } = this.props;
     return (
-      <div className="Grid" style={{ width: gridSize, height: gridSize }}>
-        {this.state.gridState.map((blockState, index) =>
-          this.renderBlock(
-            blockState.values,
-            blockSize,
-            cellSize,
-            index,
-            blockState.isValid
-          )
-        )}
+      <div style={{ width: gridSize , margin: 'auto'}}>
+        <Pallette cellSize={cellSize} cellInfo={cellInfo} />
+        <div className="Grid">
+          {this.state.gridState.map((blockState, index) =>
+            this.renderBlock(
+              blockState.values,
+              blockSize,
+              cellSize,
+              index,
+              blockState.isValid
+            )
+          )}
+        </div>
       </div>
     );
   }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Grid from './components/Grid';
 import ControlBox from './components/ControlBox';
-import Pallette from './components/Pallette';
 import { range } from './utils';
 import { notes } from 'tonal-scale';
 import { simplify } from 'tonal-note';
@@ -60,9 +59,12 @@ class App extends Component {
       } else if (cellType === 'colors') {
         // var startIndex = 9833;
         let startIndex = 0;
-        return {
-          type: 'colors',
-          dataArray: [
+        var colorArray = size <3 ? [
+            '#000099',
+            '#0000FF',
+            '#990000',
+            '#FF0000'
+          ]: size< 4 ? [
             '#000099',
             '#0000BB',
             '#0000FF',
@@ -72,7 +74,27 @@ class App extends Component {
             '#990000',
             '#BB0000',
             '#FF0000'
+          ] : [
+            '#000077',
+            '#000099',
+            '#0000CC',
+            '#0000FF',
+            '#007700',
+            '#009900',
+            '#00CC00',
+            '#00FF00',
+            '#770000',
+            '#990000',
+            '#CC0000',
+            '#FF0000',
+            '#227777',
+            '#229999',
+            '#22CCCC',
+            '#22FFFF'
           ]
+                return {
+          type: 'colors',
+          dataArray: colorArray
           // dataArray: range(startIndex, startIndex + gridSize + 1).map(val => `&#${val};`)
         };
       } else {
@@ -92,14 +114,29 @@ class App extends Component {
     };
 
     let feedbackBoolean = feedback == 'true';
+    let windowWidth = window.innerWidth;
+    let padding = 0;
+    if (windowWidth < 320) {
+      padding = 0;
+    } else if (windowWidth < 480) {
+      padding = 3;
+    } else if (windowWidth < 680) {
+      padding = 5;
+    } else if (windowWidth < 767) {
+      padding = 10;
+    } else {
+      padding = 20;
+    }
 
-    let cellSize = (window.outerWidth -40 -5*size)/(size*size);
+    let cellSize = (window.innerWidth - 2 * padding - 5 * size) / (size * size);
     cellSize = cellSize > 50 ? 50 : cellSize;
-
+    const blockSize = size * cellSize + 5;
+    const gridSize = size * blockSize + 'px';
     return (
-      <div className="App" >
+      <div className="App" style={{ padding: `5px ${padding}px` }}>
         <ControlBox
           size={size}
+          gridSize={gridSize}
           cellType={cellType}
           feedback={feedbackBoolean}
           musicKey={musicKey}
@@ -107,10 +144,11 @@ class App extends Component {
           octave={octave}
           handleControlChange={this.handleControlChange}
         />
-        <Pallette cellSize={cellSize} cellInfo={cellInfo()} />
         <Grid
           size={size}
           cellSize={cellSize}
+          blockSize={blockSize}
+          gridSize={gridSize}
           inputData={inputData}
           cellInfo={cellInfo()}
           feedback={feedbackBoolean}

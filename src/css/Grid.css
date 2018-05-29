@@ -1,4 +1,4 @@
 .Grid{
-  overflow: auto;
+  display:inline-block;
   box-sizing: border-box;
 }

@@ -1,6 +1,7 @@
 .ControlBox {
   padding-bottom: 5px;
   width: 100%;
+  max-width: 465px;
 }
 .filter {
   width: 100%;
@@ -27,5 +28,4 @@
   width: 50%;
 }
 .halfWidth .filter select {
-  width: 100px;
 }

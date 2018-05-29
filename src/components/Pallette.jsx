@@ -24,7 +24,7 @@ const Pallette = props => {
   }
 
   return cellInfo.type == 'music' && (
-    <div className="Pallette" style={{  float: 'left' }}>
+    <div className="Pallette" >
       {props.cellInfo.dataArray.map(renderCell)}
     </div>
   );

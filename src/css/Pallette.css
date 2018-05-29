@@ -1,5 +1,6 @@
-.Pallette{
+.Pallette {
   border: 3px outset #87b1ed;
-  border-width: 3px 8px;
+  border-width: 3px 7px;
   margin-bottom: 5px;
+  overflow: hidden;
 }

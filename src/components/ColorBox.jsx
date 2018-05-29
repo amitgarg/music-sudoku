@@ -13,9 +13,10 @@ export default class ColorBox extends React.Component {
         onColorSelect(index);
       };
     }
+    const cellDimensions = (100/size)+'%';
     return (
       <div className="ColorBox">
-        <div className="defaultRow" style={{ height: cellSize + 'px' }}>
+        <div className="defaultRow" style={{ height: cellSize+'px' }}>
           <div
             className={`colorCell default ${value == -1 && 'highlighted'}`}
             onClick={onSelect(-1)}
@@ -28,7 +29,7 @@ export default class ColorBox extends React.Component {
               key={index}
               className={`colorCell ${value == index && 'highlighted'}`}
               onClick={onSelect(index)}
-              style={{ backgroundColor: color }}
+              style={{ backgroundColor: color , width: cellDimensions, height: cellDimensions}}
             />
           ))}
         </div>
