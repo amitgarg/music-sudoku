@@ -7,7 +7,7 @@ const ColorCell = ({ cellInfo, data, handleCellClick }) => {
       className={`${cellInfo.type} disabled`}
       style={{
         backgroundColor: cellInfo.dataArray[data.value],
-        border: '3px groove #9e9e9e'
+        border: '1px dotted white'
       }}
     />
   ) : (
