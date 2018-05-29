@@ -14,6 +14,7 @@ var context;
 var oscillator;
 
 export function initializeMusic() {
+  var AudioContext = window.AudioContext || window.webkitAudioContext;
   context = new AudioContext();
   var o = context.createOscillator();
   o.type = 'sine';
@@ -25,11 +26,11 @@ export function initializeMusic() {
   oscillator = o;
 }
 
-export function updateNote(frequency){
+export function updateNote(frequency) {
   oscillator.frequency.value = frequency;
 }
 
-export function stopMusic(){
+export function stopMusic() {
   oscillator.stop();
   context.close();
 }
