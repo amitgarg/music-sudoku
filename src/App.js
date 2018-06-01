@@ -11,8 +11,8 @@ class App extends Component {
     super(props);
     this.state = {
       size: 3,
-      cellType: 'colors',
-      feedback: true,
+      cellType: 'numbers',
+      feedback: 'true',
       musicKey: 'C',
       octave: 3,
       scale: 'major'
